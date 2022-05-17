@@ -35,7 +35,7 @@ def update_profile(uname):
 
         return redirect(url_for('.profile',username=user.username))
 
-    return render_template('profile/updates.html',form =form)
+    return render_template('profile/updates.html',update_form =form)
 
 @main.route('/user/<username>/update/pic',methods= ['POST'])
 @login_required
