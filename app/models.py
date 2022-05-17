@@ -1,3 +1,4 @@
+from unicodedata import category
 from . import db
 from datetime import datetime
 from werkzeug.security import generate_password_hash,check_password_hash
@@ -25,6 +26,39 @@ class Bikes(db.Model):
     __tablename__='bikes'
     id = db.Column(db.Integer,primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    bike_category = db.Column(db.String(255))
+    category = db.Column(db.String(255))
     bike_pic_path = db.Column(db.String())
-    bike_reviews = db.Relationship("reviews",backref="username")
+    bike_reviews = db.relationship("reviews",backref="username")
+
+    def save_bike(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_bike(cls,id):
+        bike = Bikes .query.filter_by(category=category).all()
+        return bike
+
+    def __repr__(self):
+        return f"Bikes ('{self.bike}', '{self.date_posted}')"
+
+
+
+class Reviews(db.Model):
+    __tablename__='reviews'
+    id = db.Column(db.Integer,primary_key =True)
+    review = (db.Column.String(255))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    bikes_id =db.Column(db.Integer, db.ForeignKey("bikes.id"))
+    
+    def save_review(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_review(cls,id):
+        reviews = Reviews .query.filter_by(bikes_id=id).all()
+        return reviews
+
+    def __repr__(self):
+        return f"Reviews ('{self.review}', '{self.date_posted}')"
