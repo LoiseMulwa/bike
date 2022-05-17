@@ -20,3 +20,11 @@ class User(UserMixin,db.Model):
         @set_password.setter
         def password(self, password):
             self.secure_password = generate_password_hash(password)
+
+class Bikes(db.Model):
+    __tablename__='bikes'
+    id = db.Column(db.Integer,primary_key = True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    bike_category = db.Column(db.String(255))
+    bike_pic_path = db.Column(db.String())
+    bike_reviews = db.Relationship("reviews",backref="username")
