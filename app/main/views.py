@@ -78,7 +78,7 @@ def new_review(bikes_id):
     title='New Bike'
     return render_template('new_review.html',title=title,review_form = form,bikes_id=bikes_id)
 
-# main.route('/new_bike<int:id>', methods=['GET','POST'])
+# main.route('/new_bike/', methods=['GET','POST'])
 # @login_required
 # def new_bike():
     
