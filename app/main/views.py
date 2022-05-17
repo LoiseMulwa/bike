@@ -117,7 +117,7 @@ def new_bike():
 
         return redirect(url_for('main.index')) #or main.bike ??
 
-    return render_template('catalogue.html',bike_form= form)
+    return render_template('new_bike.html',bike_form= form)
 
 @main.route('/categories/<category>')
 def category(category):
