@@ -1,5 +1,5 @@
-<!-- <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-    <a class="navbar-brand" href="/" id="logo">BIKE HIRE</a>
+<!-- <nav class="navbar navbar-expand-lg bg-dark navbar-dark"> -->
+    <!-- <a class="navbar-brand" href="/" id="logo">BIKE HIRE</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -17,4 +17,49 @@
         </li> <br> <br>
         {%endif%}
       </ul>
-</nav> -->
+</nav> -->  -->
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+          <img src="../static/photos/BIKE LOGO.jpg" alt="" width="55" height="45" class="d-inline-block align-text">
+        </a>
+        <div class="logo">BIKE-HIRE</div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </a>                
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="">About Us</a>
+              </a>                
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="">Our Catalogue</a>
+              </a>                
+            </li>
+              {% if current_user.is_authenticated %}                          
+              <ul class="nav navbar-nav navbar-right">
+                  {% if current_user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('main.profile',uname=current_user.author)}}">Profile</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('auth.logout')}}">Sign out</a>
+                  </li> <br> <br>
+                  {% else %}
+                  <li class="nav-item"> 
+                      <a class="nav-link" href="{{url_for('auth.register')}}">Sign up</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{url_for('auth.login')}}">Login</a>
+                    </li>
+                   <br> <br>
+                  {%endif%}
+              </ul>
+        </div>
+      </div>
+    </nav>
